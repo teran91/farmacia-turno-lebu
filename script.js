@@ -11,24 +11,24 @@ const farmacias = [
 const hoy = new Date();
 const dia = hoy.getDate();
 
-// CICLO
+// CICLO DE FARMACIAS
 const indiceActual = (dia - 1) % 6;
 const indiceSiguiente = (indiceActual + 1) % 6;
 
 const actual = farmacias[indiceActual];
 const siguiente = farmacias[indiceSiguiente];
 
-// MOSTRAR FARMACIA ACTUAL
+// NOMBRE Y DIRECCIÓN
 document.getElementById("nombre").textContent = actual.nombre;
 document.getElementById("direccion").textContent = "📍 " + actual.direccion;
 
-// FORMATO FECHA
+// FORMATO FECHA PARA TURNO
 const opciones = { weekday: 'long', day: '2-digit', month: 'long' };
 const fechaTexto = hoy.toLocaleDateString("es-CL", opciones);
 const fechaFormateada =
   fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
 
-// HORARIO COMPLETO (AQUÍ VA TODO)
+// HORARIO COMPLETO
 document.getElementById("horario").textContent =
   "🕒 Inicia el " + fechaFormateada +
   ", de 09:00 a 08:59 del día siguiente";
@@ -40,22 +40,24 @@ document.getElementById("logoFarmacia").src = actual.logo;
 document.getElementById("proxima").textContent =
   "➡️ Próxima farmacia: " + siguiente.nombre;
 
-// FECHA SUPERIOR
+// FECHA PRINCIPAL (CON MAYÚSCULA)
+const fechaBonita = hoy.toLocaleDateString("es-CL", {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long'
+});
+
 document.getElementById("fecha").textContent =
-  hoy.toLocaleDateString("es-CL", {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long'
-  });
+  fechaBonita.charAt(0).toUpperCase() + fechaBonita.slice(1);
 
 // MAPA
 document.getElementById("btnMapa").href =
   "https://www.google.com/maps/search/?api=1&query=" +
   encodeURIComponent(actual.direccion + ", Lebu, Chile");
 
-// LLAMAR
+// BOTÓN LLAMAR
 if (actual.telefono) {
   document.getElementById("btnLlamar").href = "tel:" + actual.telefono;
 } else {
   document.getElementById("btnLlamar").style.display = "none";
-                      }
+}
