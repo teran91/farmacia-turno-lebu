@@ -16,7 +16,13 @@ h1 {
 
 h2 {
   font-weight: normal;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+}
+
+.turno {
+  margin-bottom: 25px;
+  font-size: 1em;
+  color: #cfefff;
 }
 
 .card {
@@ -27,6 +33,13 @@ h2 {
   max-width: 400px;
   margin: auto;
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 15px;
 }
 
 .card h3 {
@@ -64,14 +77,19 @@ h2 {
   background: #00a6d6;
 }
 
-/* MODO OBS / PANTALLA GRANDE */
+/* MODO TV / OBS */
 @media (min-width: 1000px) {
   h1 {
     font-size: 3em;
+  }
+
+  .logo {
+    width: 220px;
+    height: 220px;
   }
 
   .card {
     max-width: 600px;
     font-size: 1.5em;
   }
-}
+  }
