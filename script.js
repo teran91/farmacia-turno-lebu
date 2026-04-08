@@ -7,9 +7,18 @@ const farmacias = [
   { nombre: "Dr. Simi", direccion: "Rioseco 267", telefono: "", logo: "logos/drsimi.png" }
 ];
 
-// FECHA ACTUAL
-const hoy = new Date();
-const dia = hoy.getDate();
+// FECHA Y HORA ACTUAL
+const ahora = new Date();
+
+// AJUSTE DE TURNO (cambia a las 09:00)
+let fechaTurno = new Date(ahora);
+
+if (ahora.getHours() < 9) {
+  fechaTurno.setDate(fechaTurno.getDate() - 1);
+}
+
+// DÍA CORRECTO PARA EL CICLO
+const dia = fechaTurno.getDate();
 
 // CICLO DE FARMACIAS
 const indiceActual = (dia - 1) % 6;
@@ -22,9 +31,9 @@ const siguiente = farmacias[indiceSiguiente];
 document.getElementById("nombre").textContent = actual.nombre;
 document.getElementById("direccion").textContent = "📍 " + actual.direccion;
 
-// FORMATO FECHA PARA TURNO
+// FORMATO FECHA TURNO
 const opciones = { weekday: 'long', day: '2-digit', month: 'long' };
-const fechaTexto = hoy.toLocaleDateString("es-CL", opciones);
+const fechaTexto = fechaTurno.toLocaleDateString("es-CL", opciones);
 const fechaFormateada =
   fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
 
@@ -40,8 +49,8 @@ document.getElementById("logoFarmacia").src = actual.logo;
 document.getElementById("proxima").textContent =
   "➡️ Próxima farmacia: " + siguiente.nombre;
 
-// FECHA PRINCIPAL (CON MAYÚSCULA)
-const fechaBonita = hoy.toLocaleDateString("es-CL", {
+// FECHA PRINCIPAL (AJUSTADA)
+const fechaBonita = fechaTurno.toLocaleDateString("es-CL", {
   weekday: 'long',
   day: 'numeric',
   month: 'long'
