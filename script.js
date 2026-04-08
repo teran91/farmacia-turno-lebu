@@ -1,13 +1,13 @@
 const farmacias = [
-  { nombre: "Cruz Verde", direccion: "Saavedra 599", telefono: "" },
-  { nombre: "Farmasalud Lebu", direccion: "Rioseco 267", telefono: "" },
-  { nombre: "Maicao", direccion: "Rioseco 305", telefono: "" },
-  { nombre: "Futuro", direccion: "Saavedra 281", telefono: "" },
-  { nombre: "Redfarma", direccion: "Rioseco 155", telefono: "" },
-  { nombre: "Dr. Simi", direccion: "Rioseco 267", telefono: "" }
+  { nombre: "Cruz Verde", direccion: "Saavedra 599", telefono: "", logo: "logos/cruzverde.png" },
+  { nombre: "Farmasalud Lebu", direccion: "Rioseco 267", telefono: "", logo: "logos/farmasalud.png" },
+  { nombre: "Maicao", direccion: "Rioseco 305", telefono: "", logo: "logos/maicao.png" },
+  { nombre: "Futuro", direccion: "Saavedra 281", telefono: "", logo: "logos/futuro.png" },
+  { nombre: "Redfarma", direccion: "Rioseco 155", telefono: "", logo: "logos/redfarma.png" },
+  { nombre: "Dr. Simi", direccion: "Rioseco 267", telefono: "", logo: "logos/drsimi.png" }
 ];
 
-// FECHA ACTUAL (Chile correcto)
+// FECHA ACTUAL
 const hoy = new Date();
 const dia = hoy.getDate();
 
@@ -23,7 +23,10 @@ document.getElementById("nombre").textContent = actual.nombre;
 document.getElementById("direccion").textContent = "📍 " + actual.direccion;
 document.getElementById("horario").textContent = "🕒 09:00 a 08:59";
 
-// MOSTRAR SIGUIENTE
+// LOGO
+document.getElementById("logoFarmacia").src = actual.logo;
+
+// PRÓXIMA
 document.getElementById("proxima").textContent =
   "➡️ Próxima farmacia: " + siguiente.nombre;
 
@@ -35,12 +38,22 @@ document.getElementById("fecha").textContent =
     month: 'long'
   });
 
-// BOTÓN MAPA
+// TEXTO TURNO
+const opciones = { weekday: 'long', day: '2-digit', month: 'long' };
+const fechaTexto = hoy.toLocaleDateString("es-CL", opciones);
+const fechaFormateada =
+  fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
+
+document.getElementById("turnoInfo").textContent =
+  "Inicia el " + fechaFormateada +
+  ", de 09:00 a 08:59 del día siguiente";
+
+// MAPA
 document.getElementById("btnMapa").href =
   "https://www.google.com/maps/search/?api=1&query=" +
   encodeURIComponent(actual.direccion + ", Lebu, Chile");
 
-// BOTÓN LLAMAR
+// LLAMAR
 if (actual.telefono) {
   document.getElementById("btnLlamar").href = "tel:" + actual.telefono;
 } else {
