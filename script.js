@@ -1,10 +1,10 @@
 const farmacias = [
-  { nombre: "Cruz Verde", direccion: "Saavedra 599", telefono: "", logo: "logos/cruzverde.png" },
-  { nombre: "Farmasalud Lebu", direccion: "Rioseco 267", telefono: "", logo: "logos/farmasalud.png" },
-  { nombre: "Maicao", direccion: "Rioseco 305", telefono: "", logo: "logos/maicao.png" },
-  { nombre: "Futuro", direccion: "Saavedra 281", telefono: "", logo: "logos/futuro.png" },
-  { nombre: "Redfarma", direccion: "Rioseco 155", telefono: "", logo: "logos/redfarma.png" },
-  { nombre: "Dr. Simi", direccion: "Rioseco 267", telefono: "", logo: "logos/drsimi.png" }
+  { nombre: "Cruz Verde", direccion: "Saavedra 599", telefono: "+56412519780", logo: "logos/cruzverde.png" },
+  { nombre: "Farmasalud Lebu", direccion: "Rioseco 267", telefono: "+56998442315", logo: "logos/farmasalud.png" },
+  { nombre: "Maicao", direccion: "Rioseco 305", telefono: "+56228261800", logo: "logos/maicao.png" },
+  { nombre: "Futuro", direccion: "Saavedra 281", telefono: "+56412511525", logo: "logos/futuro.png" },
+  { nombre: "Redfarma", direccion: "Rioseco 155", telefono: "+56412511109", logo: "logos/redfarma.png" },
+  { nombre: "Dr. Simi", direccion: "Rioseco 267", telefono: "+56412511498", logo: "logos/drsimi.png" }
 ];
 
 // FECHA Y HORA ACTUAL
