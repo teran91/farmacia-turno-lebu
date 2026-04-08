@@ -18,35 +18,35 @@ const indiceSiguiente = (indiceActual + 1) % 6;
 const actual = farmacias[indiceActual];
 const siguiente = farmacias[indiceSiguiente];
 
-// MOSTRAR ACTUAL
+// MOSTRAR FARMACIA ACTUAL
 document.getElementById("nombre").textContent = actual.nombre;
 document.getElementById("direccion").textContent = "📍 " + actual.direccion;
-document.getElementById("horario").textContent = "🕒 09:00 a 08:59";
+
+// FORMATO FECHA
+const opciones = { weekday: 'long', day: '2-digit', month: 'long' };
+const fechaTexto = hoy.toLocaleDateString("es-CL", opciones);
+const fechaFormateada =
+  fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
+
+// HORARIO COMPLETO (AQUÍ VA TODO)
+document.getElementById("horario").textContent =
+  "🕒 Inicia el " + fechaFormateada +
+  ", de 09:00 a 08:59 del día siguiente";
 
 // LOGO
 document.getElementById("logoFarmacia").src = actual.logo;
 
-// PRÓXIMA
+// PRÓXIMA FARMACIA
 document.getElementById("proxima").textContent =
   "➡️ Próxima farmacia: " + siguiente.nombre;
 
-// FECHA BONITA
+// FECHA SUPERIOR
 document.getElementById("fecha").textContent =
   hoy.toLocaleDateString("es-CL", {
     weekday: 'long',
     day: 'numeric',
     month: 'long'
   });
-
-// TEXTO TURNO
-const opciones = { weekday: 'long', day: '2-digit', month: 'long' };
-const fechaTexto = hoy.toLocaleDateString("es-CL", opciones);
-const fechaFormateada =
-  fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
-
-document.getElementById("turnoInfo").textContent =
-  "Inicia el " + fechaFormateada +
-  ", de 09:00 a 08:59 del día siguiente";
 
 // MAPA
 document.getElementById("btnMapa").href =
@@ -58,4 +58,4 @@ if (actual.telefono) {
   document.getElementById("btnLlamar").href = "tel:" + actual.telefono;
 } else {
   document.getElementById("btnLlamar").style.display = "none";
-}
+                      }
