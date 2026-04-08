@@ -50,7 +50,7 @@ document.getElementById("proxima").textContent =
   "➡️ Próxima farmacia: " + siguiente.nombre;
 
 // FECHA PRINCIPAL (AJUSTADA)
-const fechaBonita = fechaTurno.toLocaleDateString("es-CL", {
+const fechaBonita = ahora.toLocaleDateString("es-CL", {
   weekday: 'long',
   day: 'numeric',
   month: 'long'
