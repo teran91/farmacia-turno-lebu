@@ -14,17 +14,6 @@ h1 {
   font-size: 2.5em;
 }
 
-h2 {
-  font-weight: normal;
-  margin-bottom: 10px;
-}
-
-.turno {
-  margin-bottom: 25px;
-  font-size: 1em;
-  color: #cfefff;
-}
-
 .card {
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(10px);
@@ -32,31 +21,32 @@ h2 {
   border-radius: 20px;
   max-width: 400px;
   margin: auto;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
 .logo {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   object-fit: contain;
+  background: white;
+  border-radius: 15px;
+  padding: 10px;
   margin-bottom: 15px;
 }
 
-.card h3 {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
-.card p {
-  margin: 5px 0;
+#horario {
+  font-size: 1.2em;
+  color: #ffe082;
+  font-weight: bold;
 }
 
 .proxima {
   margin-top: 15px;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  font-weight: bold;
   color: #00e5ff;
 }
 
+/* BOTONES */
 .botones {
   margin-top: 20px;
 }
@@ -70,26 +60,51 @@ h2 {
   border-radius: 10px;
   text-decoration: none;
   font-weight: bold;
-  transition: 0.3s;
 }
 
-.botones a:hover {
-  background: #00a6d6;
+/* BOTÓN HISTORIA CENTRADO */
+.descargar {
+  margin-top: 30px;
 }
 
-/* MODO TV / OBS */
-@media (min-width: 1000px) {
-  h1 {
-    font-size: 3em;
-  }
+.descargar a {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #ffe082;
+  color: black;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+}
 
-  .logo {
-    width: 220px;
-    height: 220px;
-  }
+/* FUENTE */
+.fuente {
+  margin-top: 25px;
+  font-size: 0.9em;
+  color: #cfefff;
+}
 
-  .card {
-    max-width: 600px;
-    font-size: 1.5em;
-  }
-  }
+.fuente a {
+  color: #00e5ff;
+  text-decoration: none;
+}
+
+/* MODO HISTORIA */
+.historia {
+  width: 1080px !important;
+  height: 1920px !important;
+  padding: 100px !important;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.historia .logo {
+  width: 300px;
+  height: 300px;
+}
+
+.historia h3 {
+  font-size: 2.5em;
+}
