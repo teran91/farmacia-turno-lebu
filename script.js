@@ -7,37 +7,36 @@ const farmacias = [
   { nombre: "Dr. Simi", direccion: "Rioseco 267", telefono: "+56412511498", logo: "logos/drsimi.png" }
 ];
 
-// FECHA Y HORA ACTUAL
+// FECHA ACTUAL
 const ahora = new Date();
 
-// AJUSTE DE TURNO (cambia a las 09:00)
+// AJUSTE DE TURNO (cambio a las 09:00)
 let fechaTurno = new Date(ahora);
-
 if (ahora.getHours() < 9) {
   fechaTurno.setDate(fechaTurno.getDate() - 1);
 }
 
-// DÍA CORRECTO PARA EL CICLO
+// DÍA PARA CICLO
 const dia = fechaTurno.getDate();
 
-// CICLO DE FARMACIAS
+// CICLO
 const indiceActual = (dia - 1) % 6;
 const indiceSiguiente = (indiceActual + 1) % 6;
 
 const actual = farmacias[indiceActual];
 const siguiente = farmacias[indiceSiguiente];
 
-// NOMBRE Y DIRECCIÓN
+// MOSTRAR DATOS
 document.getElementById("nombre").textContent = actual.nombre;
 document.getElementById("direccion").textContent = "📍 " + actual.direccion;
 
-// FORMATO FECHA TURNO
+// FECHA TURNO
 const opciones = { weekday: 'long', day: '2-digit', month: 'long' };
 const fechaTexto = fechaTurno.toLocaleDateString("es-CL", opciones);
 const fechaFormateada =
   fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
 
-// HORARIO COMPLETO
+// HORARIO
 document.getElementById("horario").textContent =
   "🕒 Inicia el " + fechaFormateada +
   ", de 09:00 a 08:59 del día siguiente";
@@ -45,11 +44,11 @@ document.getElementById("horario").textContent =
 // LOGO
 document.getElementById("logoFarmacia").src = actual.logo;
 
-// PRÓXIMA FARMACIA
+// PRÓXIMA
 document.getElementById("proxima").textContent =
   "➡️ Próxima farmacia: " + siguiente.nombre;
 
-// FECHA PRINCIPAL (AJUSTADA)
+// FECHA REAL
 const fechaBonita = ahora.toLocaleDateString("es-CL", {
   weekday: 'long',
   day: 'numeric',
@@ -65,8 +64,32 @@ document.getElementById("btnMapa").href =
   encodeURIComponent(actual.direccion + ", Lebu, Chile");
 
 // BOTÓN LLAMAR
+const btnLlamar = document.getElementById("btnLlamar");
+
 if (actual.telefono) {
-  document.getElementById("btnLlamar").href = "tel:" + actual.telefono;
+  btnLlamar.href = "tel:" + actual.telefono;
+  btnLlamar.style.display = "inline-block";
 } else {
-  document.getElementById("btnLlamar").style.display = "none";
+  btnLlamar.style.display = "none";
 }
+
+// 📸 GENERAR HISTORIA
+document.getElementById("btnImagen").addEventListener("click", () => {
+  const card = document.querySelector(".card");
+
+  card.classList.add("historia");
+
+  setTimeout(() => {
+    html2canvas(card, {
+      width: 1080,
+      height: 1920
+    }).then(canvas => {
+      const link = document.createElement("a");
+      link.download = "farmacia-turno-lebu.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+
+      card.classList.remove("historia");
+    });
+  }, 300);
+});
