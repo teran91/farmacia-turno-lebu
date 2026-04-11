@@ -7,48 +7,48 @@ const farmacias = [
   { nombre: "Dr. Simi", direccion: "Rioseco 267", telefono: "+56412511498", logo: "logos/drsimi.png" }
 ];
 
-// FECHA ACTUAL
 const ahora = new Date();
 
-// AJUSTE DE TURNO (cambio a las 09:00)
+// Ajuste de turno (09:00)
 let fechaTurno = new Date(ahora);
 if (ahora.getHours() < 9) {
   fechaTurno.setDate(fechaTurno.getDate() - 1);
 }
 
-// DÍA PARA CICLO
+// Día para ciclo
 const dia = fechaTurno.getDate();
 
-// CICLO
+// Índices
 const indiceActual = (dia - 1) % 6;
 const indiceSiguiente = (indiceActual + 1) % 6;
 
 const actual = farmacias[indiceActual];
 const siguiente = farmacias[indiceSiguiente];
 
-// MOSTRAR DATOS
+// Datos principales
 document.getElementById("nombre").textContent = actual.nombre;
 document.getElementById("direccion").textContent = "📍 " + actual.direccion;
+document.getElementById("telefono").textContent = "📞 " + actual.telefono;
 
-// FECHA TURNO
+// Fecha turno
 const opciones = { weekday: 'long', day: '2-digit', month: 'long' };
 const fechaTexto = fechaTurno.toLocaleDateString("es-CL", opciones);
 const fechaFormateada =
   fechaTexto.charAt(0).toUpperCase() + fechaTexto.slice(1);
 
-// HORARIO
+// Horario
 document.getElementById("horario").textContent =
   "🕒 Inicia el " + fechaFormateada +
   ", de 09:00 a 08:59 del día siguiente";
 
-// LOGO
+// Logo
 document.getElementById("logoFarmacia").src = actual.logo;
 
-// PRÓXIMA
+// Próxima
 document.getElementById("proxima").textContent =
   "➡️ Próxima farmacia: " + siguiente.nombre;
 
-// FECHA REAL
+// Fecha real
 const fechaBonita = ahora.toLocaleDateString("es-CL", {
   weekday: 'long',
   day: 'numeric',
@@ -58,38 +58,11 @@ const fechaBonita = ahora.toLocaleDateString("es-CL", {
 document.getElementById("fecha").textContent =
   fechaBonita.charAt(0).toUpperCase() + fechaBonita.slice(1);
 
-// MAPA
+// Botón llamar
+const btnLlamar = document.getElementById("btnLlamar");
+btnLlamar.href = "tel:" + actual.telefono;
+
+// Mapa
 document.getElementById("btnMapa").href =
   "https://www.google.com/maps/search/?api=1&query=" +
   encodeURIComponent(actual.direccion + ", Lebu, Chile");
-
-// BOTÓN LLAMAR
-const btnLlamar = document.getElementById("btnLlamar");
-
-if (actual.telefono) {
-  btnLlamar.href = "tel:" + actual.telefono;
-  btnLlamar.style.display = "inline-block";
-} else {
-  btnLlamar.style.display = "none";
-}
-
-// 📸 GENERAR HISTORIA
-document.getElementById("btnImagen").addEventListener("click", () => {
-  const card = document.querySelector(".card");
-
-  card.classList.add("historia");
-
-  setTimeout(() => {
-    html2canvas(card, {
-      width: 1080,
-      height: 1920
-    }).then(canvas => {
-      const link = document.createElement("a");
-      link.download = "farmacia-turno-lebu.png";
-      link.href = canvas.toDataURL("image/png");
-      link.click();
-
-      card.classList.remove("historia");
-    });
-  }, 300);
-});
