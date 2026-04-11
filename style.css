@@ -46,6 +46,12 @@ h1 {
   color: #00e5ff;
 }
 
+#telefono {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #ffffff;
+}
+
 /* BOTONES */
 .botones {
   margin-top: 20px;
@@ -62,21 +68,6 @@ h1 {
   font-weight: bold;
 }
 
-/* BOTÓN HISTORIA CENTRADO */
-.descargar {
-  margin-top: 30px;
-}
-
-.descargar a {
-  display: inline-block;
-  padding: 12px 20px;
-  background: #ffe082;
-  color: black;
-  border-radius: 10px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
 /* FUENTE */
 .fuente {
   margin-top: 25px;
@@ -87,24 +78,4 @@ h1 {
 .fuente a {
   color: #00e5ff;
   text-decoration: none;
-}
-
-/* MODO HISTORIA */
-.historia {
-  width: 1080px !important;
-  height: 1920px !important;
-  padding: 100px !important;
-  font-size: 2em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.historia .logo {
-  width: 300px;
-  height: 300px;
-}
-
-.historia h3 {
-  font-size: 2.5em;
 }
